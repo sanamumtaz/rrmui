@@ -8,7 +8,6 @@ import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
@@ -163,7 +162,7 @@ export default function Navbar() {
         <div className={classes.grow}>
             <AppBar position="static" style={{backgroundColor: "white", color: "black", borderRadius: "10px"}}>
                 <Toolbar>
-                    <a href="#"><img src={require('../logo.png')} width="35px" height="30px" /></a>
+                    <a href="#"><img src={require('../logo.png')} width="35px" height="30px" alt="logo"/></a>
                     <Typography className={classes.title} variant="h6" noWrap style={{paddingLeft: "15px"}}>
                         HCR # Test
                     </Typography>

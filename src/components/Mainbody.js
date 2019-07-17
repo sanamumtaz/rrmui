@@ -1,27 +1,41 @@
 import React from "react";
-import {makeStyles} from "@material-ui/core/styles";
+import { Grid, Paper } from "@material-ui/core";
+import WhiteBoard from "./WhiteBoard";
+import Video from "./Video";
+import File from "./File";
+import { connect } from "react-redux";
 
-const useStyles = makeStyles(theme => ({
-    divstyle: {
-        display: 'inline-block',
-        marginTop: "5px",
-        marginLeft: "10px",
-        width: "1260px",
-        height: "400px",
-        backgroundColor: "white",
-        boxShadow: "0px 2px 4px -1px rgba(224,224,224 ,1), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
-        borderRadius: "10px"
-    },
+const style = {
+  Paper: {
+    padding: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    height: 300,
+    boxShadow:
+        "0px 2px 4px -1px rgba(224,224,224 ,1), 0px 4px 5px 0px rgba(224,224,224 ,1), 0px 1px 10px 0px rgba(224,224,224 ,1)",
+    borderRadius: "10px",
+    flexGrow: 1
+  }
+};
 
-}));
-
-
-export default function Mainbody() {
-    const classes = useStyles();
+class Mainbody extends React.Component {
+  render() {
     return (
-        <div className={classes.divstyle}>
-
-        </div>
+      <Grid container spacing={2}>
+        {this.props.wbStatus && <WhiteBoard style={style.Paper} />}
+        {this.props.vidStatus && <Video style={style.Paper} />}
+        {this.props.fileStatus && <File style={style.Paper} />}
+      </Grid>
     );
-
+  }
 }
+
+const mapStateToProps = state => {
+  return {
+    wbStatus: state.wbStatus,
+    vidStatus: state.vidStatus,
+    fileStatus: state.fileStatus
+  };
+};
+
+export default connect(mapStateToProps)(Mainbody);

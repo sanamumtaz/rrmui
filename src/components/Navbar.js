@@ -92,16 +92,16 @@ export default function Navbar() {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <IconButton aria-label="Show 0 new mails" color="inherit">
-                    <Badge badgeContent={0} color="secondary">
+                <IconButton aria-label="Show mails" color="inherit">
+                    <Badge color="primary" variant="dot">
                         <MailIcon/>
                     </Badge>
                 </IconButton>
                 <p>Messages</p>
             </MenuItem>
             <MenuItem>
-                <IconButton aria-label="Show 0 new notifications" color="inherit">
-                    <Badge badgeContent={0} color="secondary">
+                <IconButton aria-label="Show notifications" color="inherit">
+                    <Badge color="primary" variant="dot">
                         <NotificationsIcon/>
                     </Badge>
                 </IconButton>
@@ -151,17 +151,19 @@ export default function Navbar() {
                     <div className={classes.grow}/>
 
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="Show 0 new mails" color="inherit">
-                            <Badge badgeContent={0} color="secondary">
+                        <IconButton size= "small" aria-label="Show mails" color="inherit" style={{paddingRight:"10px"}}>
+                            <Badge color="primary" variant="dot">
                                 <MailIcon/>
                             </Badge>
                         </IconButton>
-                        <IconButton aria-label="Show 1 new notifications" color="inherit">
-                            <Badge badgeContent={1} color="secondary">
+                        <IconButton size= "small" aria-label="Show notifications" color="inherit" style={{paddingRight:"10px"}}>
+                            <Badge color="secondary" variant="dot">
                                 <NotificationsIcon/>
                             </Badge>
                         </IconButton>
                         <IconButton
+                            size= "small"
+                            style={{paddingRight:"10px"}}
                             edge="end"
                             aria-label="Account of current user"
                             aria-controls={menuId}
@@ -174,6 +176,8 @@ export default function Navbar() {
                     </div>
                     <div className={classes.sectionMobile}>
                         <IconButton
+                            size= "small"
+                            style={{paddingRight:"10px"}}
                             aria-label="Show more"
                             aria-controls={mobileMenuId}
                             aria-haspopup="true"

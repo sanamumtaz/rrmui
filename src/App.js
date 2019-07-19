@@ -4,8 +4,10 @@ import Utilitybar from "./components/Utilitybar";
 // import Viewbar from "./components/Viewbar";
 // import Drawingtools from "./components/Drawingtools";
 import Mainbody from "./components/Mainbody";
-import ClassVisuals from "./components/ClassVisuals";
 //import Sessionplan from "./components/Sessionplan";
+import { Widget } from "react-chat-widget";
+import "react-chat-widget/lib/styles.css";
+import ClassVisuals from "./components/ClassVisuals";
 
 class App extends Component {
   render() {
@@ -13,11 +15,12 @@ class App extends Component {
       <div>
         <Navbar />
         <Utilitybar />
+        <Widget />
         {/* <Viewbar /> */}
         {/* <Drawingtools /> */}
         <Mainbody />
         {/* <Sessionplan /> */}
-        <ClassVisuals/>
+        <ClassVisuals />
       </div>
     );
   }

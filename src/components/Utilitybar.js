@@ -17,8 +17,12 @@ import Hidden from "@material-ui/core/Hidden";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+
 
 class Utilitybar extends React.Component {
+
     style = {
         marginTop: "5px",
         width: "100%",
@@ -29,24 +33,109 @@ class Utilitybar extends React.Component {
         borderRadius: "10px"
     };
 
+    constructor(props) {
+        super(props);
+        this.onButtonClicked = this.onButtonClicked.bind(this)
+        this.state = { currentButton: null }
+    }
+
+    onButtonClicked (id) {
+        this.setState({ currentButton: this.state.currentButton === id ? null : id })
+    }
+
+    state = {
+        anchorEl: null,
+        mobileMoreAnchorEl: null,
+    };
+
+    handleProfileMenuOpen = event => {
+        this.setState({ anchorEl: event.currentTarget });
+    };
+
+    handleMenuClose = () => {
+        this.setState({ anchorEl: null });
+        this.handleMobileMenuClose();
+    };
+
+    handleMobileMenuOpen = event => {
+        this.setState({ mobileMoreAnchorEl: event.currentTarget });
+    };
+
+    handleMobileMenuClose = () => {
+        this.setState({ mobileMoreAnchorEl: null });
+    };
+
     render() {
+        const {mobileMoreAnchorEl } = this.state;
+        const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+        const renderMobileMenu = (
+            <Menu
+                anchorEl={mobileMoreAnchorEl}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                open={isMobileMenuOpen}
+                onClose={this.handleMenuClose}
+            >
+                <MenuItem onClick={this.handleMobileMenuClose}>
+                    <IconButton>
+                        <FaChromecast/>
+                    </IconButton>
+                </MenuItem>
+                <MenuItem onClick={this.handleMobileMenuClose}>
+                    <IconButton>
+                        <FaMicrophone/>
+                    </IconButton>
+                </MenuItem>
+                <MenuItem onClick={this.handleProfileMenuOpen}>
+                    <IconButton>
+                        <FaRocketchat/>
+                    </IconButton>
+                </MenuItem>
+                <MenuItem>
+                    <IconButton>
+                        <MdSurroundSound/>
+                    </IconButton>
+                </MenuItem>
+                <MenuItem>
+                    <IconButton>
+                        <FaRegFolderOpen/>
+                    </IconButton>
+                </MenuItem>
+                <MenuItem>
+                    <IconButton>
+                        <FaHandPaper/>
+                    </IconButton>
+                </MenuItem>
+            </Menu>
+        );
         return (
             <div style={this.style}>
                 <Tooltip title="Whiteboard" placement="bottom">
-                    <IconButton onClick={() => this.props.wbToggle()}>
+                    <IconButton color={this.props.wbStatus ? "primary" : "default" }
+                                onClick={() => {
+                                    this.props.wbToggle();
+                                }}>
                         <FaChalkboard/>
                     </IconButton>
                 </Tooltip>
                 <Tooltip title="Video" placement="bottom">
-                    <IconButton onClick={() => this.props.vidToggle()}>
+                    <IconButton color={this.props.vidStatus ? "primary" : "default" }
+                                onClick={() => {
+                                    this.props.vidToggle();
+                                }}>
                         <FaPlayCircle/>
                     </IconButton>
                 </Tooltip>
+
                 <Tooltip title="Document" placement="bottom">
-                    <IconButton onClick={() => this.props.fileToggle()}>
+                    <IconButton color={this.props.fileStatus ? "primary" : "default" }
+                                onClick={() => {
+                                    this.props.fileToggle();
+                                }}>
                         <FaRegFileAlt/>
                     </IconButton>
                 </Tooltip>
+
                 <Hidden only="xs">
                     <IconButton>
                         <FaChromecast/>
@@ -67,22 +156,25 @@ class Utilitybar extends React.Component {
                         <FaHandPaper/>
                     </IconButton>
                 </Hidden>
-                <Hidden only={['sm', 'md', 'lg']}>
+                <Hidden only={["sm", "md", "lg"]}>
                     <IconButton
                         aria-label="Show more"
                         aria-haspopup="true"
                         color="inherit"
+                        onClick= {this.handleMobileMenuOpen}
                     >
                         <MoreIcon/>
                     </IconButton>
                 </Hidden>
+                {renderMobileMenu}
             </div>
         );
     }
 }
 
 const mapStateToProps = state => {
-    return {wbStatus: state.wbStatus, vidStatus: state.wbStatus};
+    return {wbStatus: state.wbStatus, vidStatus: state.vidStatus,
+        fileStatus: state.fileStatus};
 };
 
 export default connect(

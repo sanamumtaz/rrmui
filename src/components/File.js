@@ -4,7 +4,7 @@ import { Grid, Paper } from "@material-ui/core";
 export default class Video extends Component {
   render() {
     return (
-      <Grid item style={{flexGrow:1}}>
+      <Grid item md sm={12} xs={12}>
         <Paper style={this.props.style}>File Viewer</Paper>
       </Grid>
     );

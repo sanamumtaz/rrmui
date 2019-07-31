@@ -1,8 +1,22 @@
-//right now it is just one fucntion, so it is stored as index
-export const selectDoubleScreen = (state) => {
-    console.log("Selected_Double_Screen");
-    return {
-        type: "Selected_Double_Screen",
-        payload: ~state
-    }
+// Action creator
+
+export const wbToggle = () => {
+  return {
+    // Return action
+    type: "WB_TOGGLE"
+  };
+};
+
+export const vidToggle = () => {
+  return {
+    // Return action
+    type: "VID_TOGGLE"
+  };
+};
+
+export const fileToggle = () => {
+  return {
+    // Return action
+    type: "FILE_TOGGLE"
+  };
 };

@@ -11,7 +11,8 @@ const style = {
     padding: 20,
     marginTop: 10,
     marginBottom: 10,
-    height: 300
+    height: 300,
+    border: "1px solid lightBlue"
   }
 };
 

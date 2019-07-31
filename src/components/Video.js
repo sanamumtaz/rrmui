@@ -9,7 +9,7 @@ export default class Video extends Component {
           <iframe
             title="Video Embed"
             src="https://www.youtube.com/embed/pc_k-sgUYmY"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture, fullscreen"
             height="100%"
             width="100%"
           />
